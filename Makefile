@@ -5,9 +5,9 @@ clean:
 restore:
 	dotnet restore
 watch:
-	dotnet watch --project ./src/RabbitMQ_Lab.API/RabbitMQ_Lab.API.csproj
+	dotnet watch --project ./src/RabbitMQ_Lab/RabbitMQ_Lab.csproj
 run:
-	dotnet run --project ./src/RabbitMQ_Lab.API/RabbitMQ_Lab.API.csproj
+	dotnet run --project ./src/RabbitMQ_Lab/RabbitMQ_Lab.csproj
 test:
 	dotnet test
 
