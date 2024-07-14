@@ -2,9 +2,10 @@
 
 O [RabbitMQ](https://www.rabbitmq.com) é um [Message Broker](#) open-source que implementa o Advanced Message Queuing Protocol (AMQP). Ele atua recebendo [Messages (Mensagens)](#messages-mensagens) dos Producers (aplicações que enviam [Messages (Mensagens)]) e as encaminha para Consumers (aplicações que recebem mensagens) através de [Queues (Filas)](#queues-filas) e [Exchanges](#exchanges), permitindo uma comunicação assíncrona e desacoplada.
 
-**Consumer (Consumidor):** O componente que recebe e processa mensagens.
-
+**Consumer (Consumidor):** O componente que recebe e processa mensagens. <br/>
 **Producer (Produtor):** O componente que envia mensagens.
+![flow-diagram](rabbitmq-flow.png)
+
 
 ### Queues (Filas)
 
