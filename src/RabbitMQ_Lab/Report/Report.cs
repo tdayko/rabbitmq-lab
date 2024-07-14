@@ -13,7 +13,7 @@ public class Report
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = name;
-        public Status Status { get; set; } = Status.Pending;
+        public string Status { get; set; } = Report.Status.Pending.ToString();
         public DateTime? ProcessedTime { get; set; } = null;
     }
 
