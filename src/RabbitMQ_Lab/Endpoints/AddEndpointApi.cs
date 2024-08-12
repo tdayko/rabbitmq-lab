@@ -7,7 +7,7 @@ public static class EndpointsApi
     {
         var endpoints = app.MapGroup("rabbitmq/api/");
 
-        endpoints.MapPost("report/{name}", async (string name, IBus bus) =>
+        endpoints.MapPost("report/{name}", async (string name, IBus bus, ILogger logger) =>
         {
             // create report request
             var reportRequest = new Report.Report.ReportRequest(name);
@@ -16,6 +16,8 @@ public static class EndpointsApi
             Report.Report.ReportList.RequestReports.Add(reportRequest);
             // publish report request event to consumer 
             await bus.Publish(new Report.Report.ReportRequestEvent(reportRequest.Id));
+
+            logger.LogInformation("Accepted report request and send report request to consumer!");
             return Results.Accepted(value: reportRequest);
         });
 

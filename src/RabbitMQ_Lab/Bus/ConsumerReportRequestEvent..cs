@@ -1,5 +1,4 @@
 using MassTransit;
-
 using static RabbitMQ_Lab.Report.Report;
 
 namespace RabbitMQ_Lab.Bus;
