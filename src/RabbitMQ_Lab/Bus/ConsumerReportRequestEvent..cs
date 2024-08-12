@@ -12,7 +12,7 @@ internal sealed class ConsumerReportRequestEvent(ILogger<ConsumerReportRequestEv
         var report = ReportList.RequestReports.FirstOrDefault(x => x.Id == context.Message.Id);
         if (report is null)
         {
-            _logger.LogInformation($"Report with Id: {context.Message.Id} not found.");
+            _logger.LogWarning($"Report with Id: {context.Message.Id} not found.");
             return;
         }
 
