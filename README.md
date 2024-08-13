@@ -65,5 +65,9 @@ As Mensagens de um [Message Broker](#message-broker) podem ser diferentes tipos 
    ```
    make run-docker
    ```
+3. Abra a documentação do Swagger em;
+   ```
+   http://localhost:8080
+   ```
 
 
