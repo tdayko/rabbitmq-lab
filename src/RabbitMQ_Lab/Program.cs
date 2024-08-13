@@ -8,11 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRabbitMQService();
-
 builder.Host.UseSerilog((ctx, cfg) => {
     cfg.WriteTo.Console();
     cfg.WriteTo.File(new JsonFormatter(),"logs/RabbitMQ_Lab.json", rollingInterval: RollingInterval.Day);
 });
+
 var app = builder.Build();
 
 app.AddEndpointApi();   
