@@ -16,7 +16,6 @@ builder.Host.UseSerilog((ctx, lc) =>
 
     lc.WriteTo.Console();
     lc.WriteTo.File(new JsonFormatter(), dir, fileSizeLimitBytes: 1024);
-    lc.CreateLogger();
 });
 
 var app = builder.Build();
