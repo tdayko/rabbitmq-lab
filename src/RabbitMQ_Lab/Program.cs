@@ -1,22 +1,12 @@
 using RabbitMQ_Lab.AppExtensions;
 using RabbitMQ_Lab.Endpoints;
 
-using Serilog;
-using Serilog.Formatting.Json;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRabbitMQService();
-builder.Services.AddSerilog();
-builder.Host.UseSerilog((ctx, lc) =>
-{
-    var dir = $"{Environment.CurrentDirectory}/log.json";
-
-    lc.WriteTo.Console();
-    lc.WriteTo.File(new JsonFormatter(), dir, fileSizeLimitBytes: 1024);
-});
+builder.Services.AddLogging();
 
 var app = builder.Build();
 
