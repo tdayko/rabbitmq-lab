@@ -1,4 +1,6 @@
 using MassTransit;
+
+using RabbitMQ_Lab.Bus;
 namespace RabbitMQ_Lab.Endpoints;
 
 public static class EndpointsApi
@@ -7,7 +9,7 @@ public static class EndpointsApi
     {
         var endpoints = app.MapGroup("rabbitmq/api/");
 
-        endpoints.MapPost("report/{name}", async (string name, IBus bus, ILogger logger) =>
+        endpoints.MapPost("report/{name}", async (string name, IBus bus, ILogger<ConsumerReportRequestEvent> logger) =>
         {
             // create report request
             var reportRequest = new Report.Report.ReportRequest(name);
