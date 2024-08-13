@@ -1,28 +1,15 @@
 using RabbitMQ_Lab.AppExtensions;
 using RabbitMQ_Lab.Endpoints;
-using Serilog;
-using Serilog.Formatting.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddRabbitMQService();
-builder.Host.UseSerilog((ctx, cfg) =>
-{
-    var dir = "logs/RabbitMQ_Lab.json";
-    var dsn = builder.Configuration.GetValue<string>("Sentry:Dsn");
 
-    cfg.WriteTo.Console();
-    cfg.WriteTo.File(new JsonFormatter(renderMessage: true), dir, rollingInterval: RollingInterval.Day);
-    cfg.WriteTo.Sentry(options =>
-    {
-        options.Dsn = dsn;
-        options.Debug = true;
-        options.MinimumEventLevel = Serilog.Events.LogEventLevel.Debug;
-        options.TracesSampleRate = 1.0;
-    });
-});
+var rabbitMqHost = Environment.GetEnvironmentVariable("RABBITMQ__HOST") ?? builder.Configuration.GetValue<string>("RabbitMQ:Host");
+builder.Services.AddRabbitMQService(rabbitMqHost!);
+var sentryDsn = Environment.GetEnvironmentVariable("SENTRY__DSN") ?? builder.Configuration.GetValue<string>("Sentry:Dsn");
+builder.Host.AddLoggingConfiguration(sentryDsn!);
 
 var app = builder.Build();
 
