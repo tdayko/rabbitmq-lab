@@ -3,6 +3,7 @@ using MassTransit;
 using RabbitMQ_Lab.Bus;
 
 using Serilog;
+using Serilog.Filters;
 using Serilog.Formatting.Json;
 
 namespace RabbitMQ_Lab.AppExtensions;
@@ -40,9 +41,10 @@ internal static class AppExtensions
             cfg.WriteTo.Sentry(options =>
             {
                 options.Dsn = sentryDsn;
-                options.MinimumEventLevel = Serilog.Events.LogEventLevel.Debug;
+                options.MinimumEventLevel = Serilog.Events.LogEventLevel.Information;
                 options.TracesSampleRate = 1.0;
             });
+            cfg.WriteTo.Logger(lc => lc.Filter.ByIncludingOnly(Matching.FromSource("logs")));
         });
 
         return hostBuilder;
