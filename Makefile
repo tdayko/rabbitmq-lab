@@ -10,5 +10,5 @@ run:
 	dotnet run --project ./src/RabbitMQ_Lab/RabbitMQ_Lab.csproj
 test:
 	dotnet test
-
-## docker run -d --name rabbitmq-service -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+run-docker:
+	docker compose up --build
