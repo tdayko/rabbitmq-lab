@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # Porta AMQP
+      - "15672:15672"  # Porta da interface de gerenciamento
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    ports:
+      - "8080:8080"
+    environment:
+      - RABBITMQ__HOST=amqp://rabbitmq:5672
+      - SENTRY__DSN=https://dc267081e98f3abdceaa9592ef4300e1@o4505927302971392.ingest.us.sentry.io/4507770536394752
+    container_name: rabbitmq-lab

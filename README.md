@@ -49,3 +49,21 @@ Um Message Broker é um software que permite a comunicação entre diferentes si
 #### Messages (Mensagens)
 
 As Mensagens de um [Message Broker](#message-broker) podem ser diferentes tipos de informação, como comandos, eventos, dados de estado ou qualquer outra informação que precisa ser comunicada entre sistemas ou componentes.
+
+### Executar Projeto
+1. Clone o Repositório.
+
+   ```
+   git clone https://github.com/tdayko/rabbitmq-lab
+   ```
+2. Execute o comando docker ou o atalho usando o Makefile
+
+   ```
+   docker compose up --build
+   ```
+
+   ```
+   make run-docker
+   ```
+
+
